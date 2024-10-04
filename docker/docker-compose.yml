@@ -1,0 +1,22 @@
+services:
+  database:
+    image: mysql:8.0
+    container_name: sigev
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - sigev-network
+    restart: always
+
+volumes:
+  db_data:
+
+networks:
+  sigev-network:
